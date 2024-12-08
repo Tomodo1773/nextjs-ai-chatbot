@@ -51,6 +51,13 @@ export const models: Array<Model> = [
 		description: "Professional model for detailed and complex tasks",
 		provider: "google",
 	},
+  {
+    id: "gemini-exp-1121",
+    label: "Gemini Experimental 1121",
+    apiIdentifier: "gemini-exp-1121",
+    description: "Experimental model for testing new features",
+    provider: "google",
+  }
 ] as const;
 
 export const DEFAULT_MODEL_NAME: string = 'gpt-4o-mini';
