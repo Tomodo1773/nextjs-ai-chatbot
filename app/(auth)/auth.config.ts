@@ -16,17 +16,21 @@ export const authConfig = {
       const isOnRegister = nextUrl.pathname.startsWith('/register');
       const isOnLogin = nextUrl.pathname.startsWith('/login');
 
-      if (isLoggedIn && (isOnLogin || isOnRegister)) {
+      if (isLoggedIn && isOnLogin) {
         return Response.redirect(new URL('/', nextUrl as unknown as URL));
       }
 
-      if (isOnRegister || isOnLogin) {
-        return true; // Always allow access to register and login pages
+      if (isOnRegister) {
+        return false; // 新しいユーザー登録ページへのアクセスを制限
+      }
+
+      if (isOnLogin) {
+        return true; // ログインページへのアクセスは許可
       }
 
       if (isOnChat) {
         if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
+        return false; // 未認証ユーザーをログインページにリダイレクト
       }
 
       if (isLoggedIn) {
