@@ -1,11 +1,11 @@
 // Define your models here.
 
 export interface Model {
-  id: string;
-  label: string;
-  apiIdentifier: string;
-  description: string;
-  provider: 'openai' | 'anthropic' | 'google';
+	id: string;
+	label: string;
+	apiIdentifier: string;
+	description: string;
+	provider: "openai" | "anthropic" | "google";
 }
 
 export const models: Array<Model> = [
@@ -51,13 +51,20 @@ export const models: Array<Model> = [
 		description: "Professional model for detailed and complex tasks",
 		provider: "google",
 	},
-  {
-    id: "gemini-exp-1121",
-    label: "Gemini Experimental 1121",
-    apiIdentifier: "gemini-exp-1121",
-    description: "Experimental model for testing new features",
-    provider: "google",
-  }
+	{
+		id: "gemini-exp-1121",
+		label: "Gemini Experimental 1121",
+		apiIdentifier: "gemini-exp-1121",
+		description: "Experimental model for testing new features",
+		provider: "google",
+	},
+	{
+		id: "gemini-2.0-flash-exp",
+		label: "Gemini 2.0 Flash",
+		apiIdentifier: "gemini-2.0-flash-exp",
+		description: "Next generation features, superior speed, native tool use, and multimodal generation",
+		provider: "google",
+	},
 ] as const;
 
-export const DEFAULT_MODEL_NAME: string = 'gpt-4o-mini';
+export const DEFAULT_MODEL_NAME: string = "gpt-4o-mini";
