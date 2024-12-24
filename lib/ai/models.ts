@@ -24,6 +24,13 @@ export const models: Array<Model> = [
 		provider: "openai",
 	},
 	{
+		id: "o1",
+		label: "o1",
+		apiIdentifier: "o1",
+		description: "Advanced model for professional use",
+		provider: "openai",
+	},
+	{
 		id: "claude-3-5-sonnet",
 		label: "Claude 3.5 Sonnet",
 		apiIdentifier: "claude-3-5-sonnet-20241022",
