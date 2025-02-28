@@ -2,14 +2,11 @@ import { ChatRequestOptions, Message } from 'ai';
 import { PreviewMessage, ThinkingMessage } from './message';
 import { useScrollToBottom } from './use-scroll-to-bottom';
 import { Overview } from './overview';
-import { UIBlock } from './block';
-import { Dispatch, memo, SetStateAction } from 'react';
+import { memo } from 'react';
 import { Vote } from '@/lib/db/schema';
 
 interface MessagesProps {
   chatId: string;
-  block: UIBlock;
-  setBlock: Dispatch<SetStateAction<UIBlock>>;
   isLoading: boolean;
   votes: Array<Vote> | undefined;
   messages: Array<Message>;
@@ -24,8 +21,6 @@ interface MessagesProps {
 
 function PureMessages({
   chatId,
-  block,
-  setBlock,
   isLoading,
   votes,
   messages,
@@ -48,8 +43,6 @@ function PureMessages({
           key={message.id}
           chatId={chatId}
           message={message}
-          block={block}
-          setBlock={setBlock}
           isLoading={isLoading && messages.length - 1 === index}
           vote={
             votes
@@ -74,15 +67,4 @@ function PureMessages({
   );
 }
 
-function areEqual(prevProps: MessagesProps, nextProps: MessagesProps) {
-  if (
-    prevProps.block.status === 'streaming' &&
-    nextProps.block.status === 'streaming'
-  ) {
-    return true;
-  }
-
-  return false;
-}
-
-export const Messages = memo(PureMessages, areEqual);
+export const Messages = memo(PureMessages);

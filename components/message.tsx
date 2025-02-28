@@ -3,12 +3,10 @@
 import type { ChatRequestOptions, Message } from 'ai';
 import cx from 'classnames';
 import { motion } from 'framer-motion';
-import { memo, useState, type Dispatch, type SetStateAction } from 'react';
+import { memo, useState } from 'react';
 
 import type { Vote } from '@/lib/db/schema';
 
-import type { UIBlock } from './block';
-import { DocumentToolCall, DocumentToolResult } from './document';
 import { PencilEditIcon, SparklesIcon } from './icons';
 import { Markdown } from './markdown';
 import { MessageActions } from './message-actions';
@@ -23,8 +21,6 @@ import { MessageEditor } from './message-editor';
 const PurePreviewMessage = ({
   chatId,
   message,
-  block,
-  setBlock,
   vote,
   isLoading,
   setMessages,
@@ -33,8 +29,6 @@ const PurePreviewMessage = ({
 }: {
   chatId: string;
   message: Message;
-  block: UIBlock;
-  setBlock: Dispatch<SetStateAction<UIBlock>>;
   vote: Vote | undefined;
   isLoading: boolean;
   setMessages: (
@@ -128,7 +122,7 @@ const PurePreviewMessage = ({
           {message.toolInvocations && message.toolInvocations.length > 0 && (
             <div className="flex flex-col gap-4">
               {message.toolInvocations.map((toolInvocation) => {
-                const { toolName, toolCallId, state, args } = toolInvocation;
+                const { toolName, toolCallId, state } = toolInvocation;
 
                 if (state === 'result') {
                   const { result } = toolInvocation;
@@ -137,30 +131,6 @@ const PurePreviewMessage = ({
                     <div key={toolCallId}>
                       {toolName === 'getWeather' ? (
                         <Weather weatherAtLocation={result} />
-                      ) : toolName === 'createDocument' ? (
-                        <DocumentToolResult
-                          type="create"
-                          result={result}
-                          block={block}
-                          setBlock={setBlock}
-                          isReadonly={isReadonly}
-                        />
-                      ) : toolName === 'updateDocument' ? (
-                        <DocumentToolResult
-                          type="update"
-                          result={result}
-                          block={block}
-                          setBlock={setBlock}
-                          isReadonly={isReadonly}
-                        />
-                      ) : toolName === 'requestSuggestions' ? (
-                        <DocumentToolResult
-                          type="request-suggestions"
-                          result={result}
-                          block={block}
-                          setBlock={setBlock}
-                          isReadonly={isReadonly}
-                        />
                       ) : (
                         <pre>{JSON.stringify(result, null, 2)}</pre>
                       )}
@@ -174,30 +144,7 @@ const PurePreviewMessage = ({
                       skeleton: ['getWeather'].includes(toolName),
                     })}
                   >
-                    {toolName === 'getWeather' ? (
-                      <Weather />
-                    ) : toolName === 'createDocument' ? (
-                      <DocumentToolCall
-                        type="create"
-                        args={args}
-                        setBlock={setBlock}
-                        isReadonly={isReadonly}
-                      />
-                    ) : toolName === 'updateDocument' ? (
-                      <DocumentToolCall
-                        type="update"
-                        args={args}
-                        setBlock={setBlock}
-                        isReadonly={isReadonly}
-                      />
-                    ) : toolName === 'requestSuggestions' ? (
-                      <DocumentToolCall
-                        type="request-suggestions"
-                        args={args}
-                        setBlock={setBlock}
-                        isReadonly={isReadonly}
-                      />
-                    ) : null}
+                    {toolName === 'getWeather' && <Weather />}
                   </div>
                 );
               })}
