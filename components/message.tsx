@@ -11,7 +11,6 @@ import { PencilEditIcon, SparklesIcon } from './icons';
 import { Markdown } from './markdown';
 import { MessageActions } from './message-actions';
 import { PreviewAttachment } from './preview-attachment';
-import { Weather } from './weather';
 import equal from 'fast-deep-equal';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
@@ -129,22 +128,13 @@ const PurePreviewMessage = ({
 
                   return (
                     <div key={toolCallId}>
-                      {toolName === 'getWeather' ? (
-                        <Weather weatherAtLocation={result} />
-                      ) : (
-                        <pre>{JSON.stringify(result, null, 2)}</pre>
-                      )}
+                      <pre>{JSON.stringify(result, null, 2)}</pre>
                     </div>
                   );
                 }
                 return (
-                  <div
-                    key={toolCallId}
-                    className={cx({
-                      skeleton: ['getWeather'].includes(toolName),
-                    })}
-                  >
-                    {toolName === 'getWeather' && <Weather />}
+                  <div key={toolCallId}>
+                    <pre>Loading tool result...</pre>
                   </div>
                 );
               })}
