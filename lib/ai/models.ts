@@ -6,6 +6,7 @@ export interface Model {
 	apiIdentifier: string;
 	description: string;
 	provider: "openai" | "anthropic" | "google";
+	iconPath: string;
 }
 
 export const models: Array<Model> = [
@@ -15,6 +16,7 @@ export const models: Array<Model> = [
 		apiIdentifier: "gpt-4o-mini",
 		description: "Small model for fast, lightweight tasks",
 		provider: "openai",
+		iconPath: "/images/models/openai.svg",
 	},
 	{
 		id: "gpt-4o",
@@ -22,6 +24,7 @@ export const models: Array<Model> = [
 		apiIdentifier: "gpt-4o",
 		description: "For complex, multi-step tasks",
 		provider: "openai",
+		iconPath: "/images/models/openai.svg",
 	},
 	{
 		id: "gpt-4.5-preview",
@@ -29,6 +32,7 @@ export const models: Array<Model> = [
 		apiIdentifier: "gpt-4.5-preview",
 		description: "For complex, multi-step tasks",
 		provider: "openai",
+		iconPath: "/images/models/openai.svg",
 	},
 	{
 		id: "claude-3-5-sonnet",
@@ -36,6 +40,7 @@ export const models: Array<Model> = [
 		apiIdentifier: "claude-3-5-sonnet-latest",
 		description: "Most capable model for complex tasks",
 		provider: "anthropic",
+		iconPath: "/images/models/anthropic.svg",
 	},
 	{
 		id: "claude-3-7-sonnet",
@@ -43,6 +48,7 @@ export const models: Array<Model> = [
 		apiIdentifier: "claude-3-7-sonnet-latest",
 		description: "Balanced performance and speed",
 		provider: "anthropic",
+		iconPath: "/images/models/anthropic.svg",
 	},
 	{
 		id: "gemini-2.0-flash",
@@ -50,6 +56,7 @@ export const models: Array<Model> = [
 		apiIdentifier: "gemini-2.0-flash",
 		description: "High-speed model for quick responses",
 		provider: "google",
+		iconPath: "/images/models/gemini.svg",
 	},
 	{
 		id: "gemini-2.0-pro-exp-02-05",
@@ -57,6 +64,7 @@ export const models: Array<Model> = [
 		apiIdentifier: "gemini-2.0-pro-exp-02-05",
 		description: "Professional model for detailed and complex tasks",
 		provider: "google",
+		iconPath: "/images/models/gemini.svg",
 	},
 	{
 		id: "gemini-2.0-flash-thinking-exp-01-21",
@@ -64,6 +72,7 @@ export const models: Array<Model> = [
 		apiIdentifier: "gemini-2.0-flash-thinking-exp-01-21",
 		description: "Experimental model for testing new features",
 		provider: "google",
+		iconPath: "/images/models/gemini.svg",
 	},
 ] as const;
 

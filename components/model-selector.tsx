@@ -1,6 +1,6 @@
 'use client';
 
-import { startTransition, useMemo, useOptimistic, useState } from 'react';
+import { startTransition, useMemo, useState } from 'react';
 
 import { saveModelId } from '@/app/(chat)/actions';
 import { Button } from '@/components/ui/button';
@@ -22,12 +22,11 @@ export function ModelSelector({
   selectedModelId: string;
 } & React.ComponentProps<typeof Button>) {
   const [open, setOpen] = useState(false);
-  const [optimisticModelId, setOptimisticModelId] =
-    useOptimistic(selectedModelId);
+  const [currentModelId, setCurrentModelId] = useState(selectedModelId);
 
   const selectedModel = useMemo(
-    () => models.find((model) => model.id === optimisticModelId),
-    [optimisticModelId],
+    () => models.find((model) => model.id === currentModelId),
+    [currentModelId],
   );
 
   return (
@@ -39,7 +38,14 @@ export function ModelSelector({
           className,
         )}
       >
-        <Button variant="outline" className="md:px-2 md:h-[34px]">
+        <Button variant="outline" className="md:px-2 md:h-[34px] gap-2">
+          {selectedModel?.iconPath && (
+            <img
+              src={selectedModel.iconPath}
+              alt={`${selectedModel.provider} icon`}
+              className="w-4 h-4"
+            />
+          )}
           {selectedModel?.label}
           <ChevronDownIcon />
         </Button>
@@ -52,20 +58,27 @@ export function ModelSelector({
               setOpen(false);
 
               startTransition(() => {
-                setOptimisticModelId(model.id);
+                setCurrentModelId(model.id);
                 saveModelId(model.id);
               });
             }}
             className="gap-4 group/item flex flex-row justify-between items-center"
-            data-active={model.id === optimisticModelId}
+            data-active={model.id === currentModelId}
           >
-            <div className="flex flex-col gap-1 items-start">
-              {model.label}
-              {model.description && (
-                <div className="text-xs text-muted-foreground">
-                  {model.description}
-                </div>
-              )}
+            <div className="flex items-center gap-3">
+              <img
+                src={model.iconPath}
+                alt={`${model.provider} icon`}
+                className="w-4 h-4"
+              />
+              <div className="flex flex-col gap-1">
+                {model.label}
+                {model.description && (
+                  <div className="text-xs text-muted-foreground">
+                    {model.description}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="text-primary dark:text-primary-foreground opacity-0 group-data-[active=true]/item:opacity-100">
               <CheckCircleFillIcon />
