@@ -1,9 +1,3 @@
-import { LanguageModelV1StreamPart } from 'ai';
+import type { Experimental_LanguageModelV1Middleware } from 'ai';
 
-export const customMiddleware = new TransformStream<LanguageModelV1StreamPart, LanguageModelV1StreamPart>({
-  transform(chunk, controller) {
-    if (chunk.type === 'text-delta') {
-      controller.enqueue(chunk);
-    }
-  }
-});
+export const customMiddleware: Experimental_LanguageModelV1Middleware = {};
