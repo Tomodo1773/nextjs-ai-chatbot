@@ -5,6 +5,7 @@ import {
   streamText,
 } from 'ai';
 import { z } from 'zod';
+import { AISDKExporter } from 'langsmith/vercel';
 
 import { auth } from '@/app/(auth)/auth';
 import { customModel } from '@/lib/ai';
@@ -79,6 +80,7 @@ export async function POST(request: Request) {
     model: customModel(model.apiIdentifier),
     system: systemPrompt,
     messages: coreMessages,
+    experimental_telemetry: AISDKExporter.getSettings(),
     maxSteps: 5,
     onFinish: async ({ response }) => {
       if (session.user?.id) {
@@ -113,10 +115,6 @@ export async function POST(request: Request) {
       }
 
       streamingData.close();
-    },
-    experimental_telemetry: {
-      isEnabled: true,
-      functionId: 'stream-text',
     },
   });
 
