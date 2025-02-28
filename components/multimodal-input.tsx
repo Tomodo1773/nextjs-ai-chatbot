@@ -120,8 +120,11 @@ function PureMultimodalInput({
     setAttachments([]);
     setLocalStorageInput('');
 
-    if (width && width > 768) {
-      textareaRef.current?.focus();
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      if (width && width > 768) {
+        textareaRef.current.focus();
+      }
     }
   }, [
     attachments,

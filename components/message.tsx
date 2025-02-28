@@ -58,12 +58,12 @@ const PurePreviewMessage = ({
         )}
       >
         {message.role === 'assistant' && (
-          <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border overflow-hidden">
+          <div className="size-10 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border overflow-hidden">
             <Image
               src="/images/selenia/selenia.png"
               alt="Assistant Icon"
-              width={32}
-              height={32}
+              width={40}
+              height={40}
               className="object-cover"
             />
           </div>
@@ -192,12 +192,12 @@ export const ThinkingMessage = () => {
           },
         )}
       >
-        <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border overflow-hidden">
+        <div className="size-10 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border overflow-hidden">
           <Image
             src="/images/selenia/selenia.png"
             alt="Assistant Icon"
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className="object-cover"
           />
         </div>
