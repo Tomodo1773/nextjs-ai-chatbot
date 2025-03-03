@@ -231,10 +231,13 @@ function PureMultimodalInput({
         value={input}
         onChange={handleInput}
         className={cx(
-          'min-h-[24px] max-h-[calc(75dvh)] overflow-hidden resize-none rounded-xl !text-base bg-muted',
+          'overflow-hidden resize-none rounded-xl !text-base bg-muted',
+          width && width <= 768
+            ? 'min-h-[24px] max-h-[48px]'
+            : 'min-h-[24px] max-h-[calc(75dvh)]',
           className,
         )}
-        rows={3}
+        rows={width && width <= 768 ? 1 : 3}
         autoFocus
         onKeyDown={(event) => {
           if (event.key === 'Enter' && !event.shiftKey) {
