@@ -10,7 +10,7 @@ import { AISDKExporter } from 'langsmith/vercel';
 import { auth } from '@/app/(auth)/auth';
 import { customModel } from '@/lib/ai';
 import { models } from '@/lib/ai/models';
-import { systemPrompt } from '@/lib/ai/prompts';
+import { getSystemPrompt } from '@/lib/ai/prompts';
 import {
   deleteChatById,
   getChatById,
@@ -78,7 +78,7 @@ export async function POST(request: Request) {
 
   const result = streamText({
     model: customModel(model.apiIdentifier),
-    system: systemPrompt,
+    system: await getSystemPrompt(session.user.email!),
     messages: coreMessages,
     experimental_telemetry: AISDKExporter.getSettings(),
     maxSteps: 5,
