@@ -78,7 +78,7 @@ export function ChatSettingsDialog({
 
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogContent>
+      <AlertDialogContent className="max-h-[85vh] flex flex-col">
         <AlertDialogHeader>
           <AlertDialogTitle>チャット設定</AlertDialogTitle>
           <AlertDialogDescription>
@@ -86,37 +86,39 @@ export function ChatSettingsDialog({
           </AlertDialogDescription>
         </AlertDialogHeader>
 
-        <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="system-prompt">カスタム指示</Label>
-            <Textarea
-              id="system-prompt"
-              placeholder="AIアシスタントへの追加指示を入力してください（例：専門用語を使わずに説明してください）"
-              value={systemPrompt}
-              onChange={(e) => setSystemPrompt(e.target.value)}
-              rows={5}
-            />
-            <p className="text-sm text-muted-foreground">
-              ここで設定した指示は、基本のシステムプロンプトに組み込まれます。AIアシスタントの基本的な振る舞いを維持しながら、追加の指示を与えることができます。
-            </p>
-          </div>
+        <div className="flex-1 overflow-y-auto pr-2">
+          <div className="space-y-4 pb-4">
+            <div className="space-y-2">
+              <Label htmlFor="system-prompt">カスタム指示</Label>
+              <Textarea
+                id="system-prompt"
+                placeholder="AIアシスタントへの追加指示を入力してください（例：専門用語を使わずに説明してください）"
+                value={systemPrompt}
+                onChange={(e) => setSystemPrompt(e.target.value)}
+                rows={5}
+              />
+              <p className="text-sm text-muted-foreground">
+                ここで設定した指示は、基本のシステムプロンプトに組み込まれます。AIアシスタントの基本的な振る舞いを維持しながら、追加の指示を与えることができます。
+              </p>
+            </div>
 
-          <div className="grid gap-2">
-            <Label htmlFor="user-profile">ユーザープロファイル</Label>
-            <Textarea
-              id="user-profile"
-              placeholder="あなたについての情報を入力してください（例：プログラミング歴5年のWebエンジニアです）"
-              value={userProfile}
-              onChange={(e) => setUserProfile(e.target.value)}
-              rows={3}
-            />
-            <p className="text-sm text-muted-foreground">
-              ここで設定した情報は、AIアシスタントがあなたに合わせた応答をするために使用されます。
-            </p>
+            <div className="space-y-2">
+              <Label htmlFor="user-profile">ユーザープロファイル</Label>
+              <Textarea
+                id="user-profile"
+                placeholder="あなたについての情報を入力してください（例：プログラミング歴5年のWebエンジニアです）"
+                value={userProfile}
+                onChange={(e) => setUserProfile(e.target.value)}
+                rows={3}
+              />
+              <p className="text-sm text-muted-foreground">
+                ここで設定した情報は、AIアシスタントがあなたに合わせた応答をするために使用されます。
+              </p>
+            </div>
           </div>
         </div>
 
-        <AlertDialogFooter className="gap-2">
+        <AlertDialogFooter className="gap-2 border-t pt-4 mt-2">
           <AlertDialogCancel>キャンセル</AlertDialogCancel>
           <Button onClick={handleSave} disabled={isLoading}>
             {isLoading ? '保存中...' : '保存'}
