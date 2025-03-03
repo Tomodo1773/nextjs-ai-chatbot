@@ -20,6 +20,7 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^1.1.11",
     "@ai-sdk/google": "^1.1.17",
+    "@ai-sdk/groq": "^1.1.11",
     "@ai-sdk/openai": "1.1.15",
     "@ai-sdk/provider": "1.0.9",
     "@opentelemetry/api-logs": "^0.57.2",

@@ -5,7 +5,7 @@ export interface Model {
   label: string;
   apiIdentifier: string;
   description: string;
-  provider: 'openai' | 'anthropic' | 'google';
+  provider: 'openai' | 'anthropic' | 'google' | 'groq';
   iconPath: string;
 }
 
@@ -73,6 +73,14 @@ export const models: Array<Model> = [
     description: 'Experimental model for testing new features',
     provider: 'google',
     iconPath: '/images/models/gemini.svg',
+  },
+  {
+    id: 'deepseek-r1-distill-llama-70b',
+    label: 'DeepSeek R1 Distill Llama',
+    apiIdentifier: 'deepseek-r1-distill-llama-70b',
+    description: 'Experimental model for testing new features',
+    provider: 'groq',
+    iconPath: '/images/models/groq.svg',
   },
 ] as const;
 
