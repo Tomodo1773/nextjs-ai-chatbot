@@ -12,13 +12,19 @@ export async function GET() {
     }
 
     const [userData] = await db
-      .select({ systemPrompt: user.system_prompt })
+      .select({
+        systemPrompt: user.system_prompt,
+        userProfile: user.user_profile,
+      })
       .from(user)
       .where(eq(user.email, session.user.email));
 
-    return NextResponse.json({ systemPrompt: userData?.systemPrompt || '' });
+    return NextResponse.json({
+      systemPrompt: userData?.systemPrompt || '',
+      userProfile: userData?.userProfile || '',
+    });
   } catch (error) {
-    console.error('Failed to get system prompt:', error);
+    console.error('Failed to get settings:', error);
     return new NextResponse('Internal Server Error', { status: 500 });
   }
 }
@@ -31,16 +37,19 @@ export async function POST(req: Request) {
     }
 
     const json = await req.json();
-    const { systemPrompt } = json;
+    const { systemPrompt, userProfile } = json;
 
     await db
       .update(user)
-      .set({ system_prompt: systemPrompt })
+      .set({
+        system_prompt: systemPrompt,
+        user_profile: userProfile,
+      })
       .where(eq(user.email, session.user.email));
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Failed to update system prompt:', error);
+    console.error('Failed to update settings:', error);
     return new NextResponse('Internal Server Error', { status: 500 });
   }
 }

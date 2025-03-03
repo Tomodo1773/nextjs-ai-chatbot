@@ -26,24 +26,26 @@ export function ChatSettingsDialog({
 }: ChatSettingsDialogProps) {
   const { data: session } = useSession();
   const [systemPrompt, setSystemPrompt] = useState('');
+  const [userProfile, setUserProfile] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const fetchSystemPrompt = async () => {
+    const fetchSettings = async () => {
       if (!session?.user?.email) return;
 
       try {
         const response = await fetch('/api/settings');
         const data = await response.json();
         setSystemPrompt(data.systemPrompt || '');
+        setUserProfile(data.userProfile || '');
       } catch (error) {
-        console.error('Failed to fetch system prompt:', error);
-        toast.error('システムプロンプトの取得に失敗しました');
+        console.error('Failed to fetch settings:', error);
+        toast.error('設定の取得に失敗しました');
       }
     };
 
     if (open) {
-      fetchSystemPrompt();
+      fetchSettings();
     }
   }, [open, session?.user?.email]);
 
@@ -57,17 +59,17 @@ export function ChatSettingsDialog({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ systemPrompt }),
+        body: JSON.stringify({ systemPrompt, userProfile }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to save system prompt');
+        throw new Error('Failed to save settings');
       }
 
       toast.success('設定を保存しました');
       onOpenChange(false);
     } catch (error) {
-      console.error('Failed to save system prompt:', error);
+      console.error('Failed to save settings:', error);
       toast.error('設定の保存に失敗しました');
     } finally {
       setIsLoading(false);
@@ -80,7 +82,7 @@ export function ChatSettingsDialog({
         <AlertDialogHeader>
           <AlertDialogTitle>チャット設定</AlertDialogTitle>
           <AlertDialogDescription>
-            AIアシスタントの振る舞いをカスタマイズするための追加指示を設定できます。
+            AIアシスタントの振る舞いをカスタマイズするための設定を行えます。
           </AlertDialogDescription>
         </AlertDialogHeader>
 
@@ -96,6 +98,20 @@ export function ChatSettingsDialog({
             />
             <p className="text-sm text-muted-foreground">
               ここで設定した指示は、基本のシステムプロンプトに組み込まれます。AIアシスタントの基本的な振る舞いを維持しながら、追加の指示を与えることができます。
+            </p>
+          </div>
+
+          <div className="grid gap-2">
+            <Label htmlFor="user-profile">ユーザープロファイル</Label>
+            <Textarea
+              id="user-profile"
+              placeholder="あなたについての情報を入力してください（例：プログラミング歴5年のWebエンジニアです）"
+              value={userProfile}
+              onChange={(e) => setUserProfile(e.target.value)}
+              rows={3}
+            />
+            <p className="text-sm text-muted-foreground">
+              ここで設定した情報は、AIアシスタントがあなたに合わせた応答をするために使用されます。
             </p>
           </div>
         </div>
