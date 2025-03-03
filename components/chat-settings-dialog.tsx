@@ -80,16 +80,15 @@ export function ChatSettingsDialog({
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent className="max-h-[85vh] flex flex-col">
         <AlertDialogHeader>
-          <AlertDialogTitle>チャット設定</AlertDialogTitle>
-          <AlertDialogDescription>
-            AIアシスタントの振る舞いをカスタマイズするための設定を行えます。
-          </AlertDialogDescription>
+          <AlertDialogTitle>AIアシスタントをカスタマイズする</AlertDialogTitle>
         </AlertDialogHeader>
 
         <div className="flex-1 overflow-y-auto pr-2">
           <div className="space-y-4 pb-4">
             <div className="space-y-2">
-              <Label htmlFor="system-prompt">カスタム指示</Label>
+              <Label htmlFor="system-prompt">
+                どのような特徴を求めていますか？
+              </Label>
               <Textarea
                 id="system-prompt"
                 placeholder="AIアシスタントへの追加指示を入力してください（例：専門用語を使わずに説明してください）"
@@ -97,13 +96,12 @@ export function ChatSettingsDialog({
                 onChange={(e) => setSystemPrompt(e.target.value)}
                 rows={5}
               />
-              <p className="text-sm text-muted-foreground">
-                ここで設定した指示は、基本のシステムプロンプトに組み込まれます。AIアシスタントの基本的な振る舞いを維持しながら、追加の指示を与えることができます。
-              </p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="user-profile">ユーザープロファイル</Label>
+              <Label htmlFor="user-profile">
+                あなたについて知っておくべきことがあれば教えてください。
+              </Label>
               <Textarea
                 id="user-profile"
                 placeholder="あなたについての情報を入力してください（例：プログラミング歴5年のWebエンジニアです）"
@@ -111,9 +109,6 @@ export function ChatSettingsDialog({
                 onChange={(e) => setUserProfile(e.target.value)}
                 rows={3}
               />
-              <p className="text-sm text-muted-foreground">
-                ここで設定した情報は、AIアシスタントがあなたに合わせた応答をするために使用されます。
-              </p>
             </div>
           </div>
         </div>
