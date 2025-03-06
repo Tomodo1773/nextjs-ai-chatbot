@@ -7,6 +7,7 @@ export interface Model {
   description: string;
   provider: 'openai' | 'anthropic' | 'google' | 'groq';
   iconPath: string;
+  providerOptions?: Record<string, any>;
 }
 
 export const models: Array<Model> = [
@@ -65,6 +66,19 @@ export const models: Array<Model> = [
     description: 'Balanced performance and speed',
     provider: 'anthropic',
     iconPath: '/images/models/anthropic.svg',
+  },
+  {
+    id: 'claude-3-7-sonnet-thinking',
+    label: 'Claude 3.7 Sonnet Thinking',
+    apiIdentifier: 'claude-3-7-sonnet-latest',
+    description: 'Balanced performance and speed',
+    provider: 'anthropic',
+    iconPath: '/images/models/anthropic.svg',
+    providerOptions: {
+      anthropic: {
+        thinking: { type: 'enabled', budgetTokens: 12000 },
+      },
+    },
   },
   {
     id: 'gemini-2.0-flash',

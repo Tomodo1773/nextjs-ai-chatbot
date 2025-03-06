@@ -82,6 +82,7 @@ export async function POST(request: Request) {
     messages: coreMessages,
     experimental_telemetry: AISDKExporter.getSettings(),
     maxSteps: 5,
+    providerOptions: model.providerOptions,
     onFinish: async ({ response }) => {
       if (session.user?.id) {
         try {
