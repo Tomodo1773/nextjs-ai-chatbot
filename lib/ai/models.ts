@@ -35,6 +35,22 @@ export const models: Array<Model> = [
     iconPath: '/images/models/openai.svg',
   },
   {
+    id: 'o1',
+    label: 'o1',
+    apiIdentifier: 'o1',
+    description: 'For complex, multi-step tasks',
+    provider: 'openai',
+    iconPath: '/images/models/openai.svg',
+  },
+  {
+    id: 'o3-mini',
+    label: 'o3 mini',
+    apiIdentifier: 'o3-mini',
+    description: 'For complex, multi-step tasks',
+    provider: 'openai',
+    iconPath: '/images/models/openai.svg',
+  },
+  {
     id: 'claude-3-5-sonnet',
     label: 'Claude 3.5 Sonnet',
     apiIdentifier: 'claude-3-5-sonnet-latest',
