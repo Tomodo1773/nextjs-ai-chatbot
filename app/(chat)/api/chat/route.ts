@@ -4,7 +4,6 @@ import {
   convertToCoreMessages,
   streamText,
 } from 'ai';
-import { z } from 'zod';
 import { AISDKExporter } from 'langsmith/vercel';
 
 import { auth } from '@/app/(auth)/auth';
