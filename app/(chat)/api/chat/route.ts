@@ -77,7 +77,7 @@ export async function POST(request: Request) {
 
   const result = streamText({
     model: customModel(model.apiIdentifier),
-    system: await getSystemPrompt(session.user.email!),
+    system: await getSystemPrompt(session.user.email ?? ''),
     messages: coreMessages,
     experimental_telemetry: AISDKExporter.getSettings(),
     maxSteps: 5,
