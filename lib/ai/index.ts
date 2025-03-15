@@ -28,6 +28,13 @@ export const customModel = (apiIdentifier: string) => {
       model: google(apiIdentifier),
       middleware: customMiddleware,
     });
+  } else if (model.provider === 'google-search') {
+    return wrapLanguageModel({
+      model: google(apiIdentifier, {
+    useSearchGrounding: true,
+  }),
+      middleware: customMiddleware,
+    });
   } else if (model.provider === 'groq') {
     return wrapLanguageModel({
       model: groq(apiIdentifier),

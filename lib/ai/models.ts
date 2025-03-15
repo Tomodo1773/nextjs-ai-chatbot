@@ -4,7 +4,7 @@ export interface Model {
   id: string;
   label: string;
   apiIdentifier: string;
-  provider: 'openai' | 'anthropic' | 'google' | 'groq';
+  provider: 'openai' | 'anthropic' | 'google' | 'groq' | 'google-search';
   iconPath: string;
   providerOptions?: Record<string, any>;
 }
@@ -76,6 +76,13 @@ export const models: Array<Model> = [
     label: 'Gemini 2.0 Flash',
     apiIdentifier: 'gemini-2.0-flash',
     provider: 'google',
+    iconPath: '/images/models/gemini.svg',
+  },
+  {
+    id: 'gemini-2.0-flash-search',
+    label: 'Gemini 2.0 Flash Search',
+    apiIdentifier: 'gemini-2.0-flash',
+    provider: 'google-search',
     iconPath: '/images/models/gemini.svg',
   },
   {
