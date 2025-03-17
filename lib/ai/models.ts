@@ -6,7 +6,7 @@ export interface Model {
   apiIdentifier: string;
   provider: 'openai' | 'anthropic' | 'google' | 'groq' | 'google-search';
   iconPath: string;
-  providerOptions?: Record<string, any>;
+  settings?: Record<string, any>;
 }
 
 export const models: Array<Model> = [
@@ -65,9 +65,11 @@ export const models: Array<Model> = [
     apiIdentifier: 'claude-3-7-sonnet-latest',
     provider: 'anthropic',
     iconPath: '/images/models/anthropic.svg',
-    providerOptions: {
-      anthropic: {
-        thinking: { type: 'enabled', budgetTokens: 12000 },
+    settings: {
+      providerOptions: {
+        anthropic: {
+          thinking: { type: 'enabled', budgetTokens: 12000 },
+        },
       },
     },
   },
