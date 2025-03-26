@@ -4,7 +4,7 @@ export interface Model {
   id: string;
   label: string;
   apiIdentifier: string;
-  provider: 'openai' | 'anthropic' | 'google' | 'groq' | 'google-search';
+  provider: 'openai' | 'anthropic' | 'google' | 'groq';
   iconPath: string;
   settings?: Record<string, any>;
 }
@@ -75,35 +75,14 @@ export const models: Array<Model> = [
   },
   {
     id: 'gemini-2.0-flash',
-    label: 'Gemini 2.0 Flash',
+    label: 'Gemini 2.0 Flash (Web)',
     apiIdentifier: 'gemini-2.0-flash',
-    provider: 'google',
-    iconPath: '/images/models/gemini.svg',
-  },
-  {
-    id: 'gemini-2.0-flash-search',
-    label: 'Gemini 2.0 Flash Search',
-    apiIdentifier: 'gemini-2.0-flash',
-    provider: 'google-search',
-    iconPath: '/images/models/gemini.svg',
-  },
-  {
-    id: 'gemini-2.0-pro-exp-02-05',
-    label: 'Gemini 2.0 Pro',
-    apiIdentifier: 'gemini-2.0-pro-exp-02-05',
-    provider: 'google',
-    iconPath: '/images/models/gemini.svg',
-  },
-  {
-    id: 'gemini-2.0-flash-thinking-exp-01-21',
-    label: 'Gemini 2.0 Flash Thinking',
-    apiIdentifier: 'gemini-2.0-flash-thinking-exp-01-21',
     provider: 'google',
     iconPath: '/images/models/gemini.svg',
   },
   {
     id: 'gemini-2.5-pro-exp-03-25',
-    label: 'Gemini 2.5 Pro',
+    label: 'Gemini 2.5 Pro (Web)',
     apiIdentifier: 'gemini-2.5-pro-exp-03-25',
     provider: 'google',
     iconPath: '/images/models/gemini.svg',

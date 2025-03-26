@@ -30,11 +30,6 @@ export const customModel = (apiIdentifier: string) => {
     });
   } else if (model.provider === 'google') {
     return wrapLanguageModel({
-      model: google(apiIdentifier),
-      middleware: defaultSettingsMiddleware({ settings: baseSettings }),
-    });
-  } else if (model.provider === 'google-search') {
-    return wrapLanguageModel({
       model: google(apiIdentifier, {
         useSearchGrounding: true,
       }),
