@@ -102,6 +102,13 @@ export const models: Array<Model> = [
     iconPath: '/images/models/gemini.svg',
   },
   {
+    id: 'gemini-2.5-pro-exp-03-25',
+    label: 'Gemini 2.5 Pro',
+    apiIdentifier: 'gemini-2.5-pro-exp-03-25',
+    provider: 'google',
+    iconPath: '/images/models/gemini.svg',
+  },
+  {
     id: 'deepseek-r1-distill-llama-70b',
     label: 'DeepSeek R1 Distill Llama',
     apiIdentifier: 'deepseek-r1-distill-llama-70b',
