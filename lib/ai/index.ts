@@ -2,9 +2,12 @@ import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
 import { google } from '@ai-sdk/google';
 import { groq } from '@ai-sdk/groq';
-import { wrapLanguageModel, extractReasoningMiddleware } from 'ai';
+import {
+  wrapLanguageModel,
+  extractReasoningMiddleware,
+  defaultSettingsMiddleware,
+} from 'ai';
 
-import { customMiddleware } from './custom-middleware';
 import { models } from './models';
 
 export const customModel = (apiIdentifier: string) => {
@@ -13,20 +16,24 @@ export const customModel = (apiIdentifier: string) => {
     throw new Error(`Model ${apiIdentifier} not found`);
   }
 
+  const baseSettings = model.settings || {};
+
   if (model.provider === 'openai') {
     return wrapLanguageModel({
       model: openai(apiIdentifier),
-      middleware: customMiddleware,
+      middleware: defaultSettingsMiddleware({ settings: baseSettings }),
     });
   } else if (model.provider === 'anthropic') {
     return wrapLanguageModel({
       model: anthropic(apiIdentifier),
-      middleware: customMiddleware,
+      middleware: defaultSettingsMiddleware({ settings: baseSettings }),
     });
   } else if (model.provider === 'google') {
     return wrapLanguageModel({
-      model: google(apiIdentifier),
-      middleware: customMiddleware,
+      model: google(apiIdentifier, {
+        useSearchGrounding: true,
+      }),
+      middleware: defaultSettingsMiddleware({ settings: baseSettings }),
     });
   } else if (model.provider === 'groq') {
     return wrapLanguageModel({

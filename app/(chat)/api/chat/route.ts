@@ -4,7 +4,6 @@ import {
   convertToCoreMessages,
   streamText,
 } from 'ai';
-import { z } from 'zod';
 import { AISDKExporter } from 'langsmith/vercel';
 
 import { auth } from '@/app/(auth)/auth';
@@ -78,11 +77,10 @@ export async function POST(request: Request) {
 
   const result = streamText({
     model: customModel(model.apiIdentifier),
-    system: await getSystemPrompt(session.user.email!),
+    system: await getSystemPrompt(session.user.email ?? ''),
     messages: coreMessages,
     experimental_telemetry: AISDKExporter.getSettings(),
     maxSteps: 5,
-    providerOptions: model.providerOptions,
     onFinish: async ({ response }) => {
       if (session.user?.id) {
         try {
