@@ -6,6 +6,7 @@ export interface Model {
   apiIdentifier: string;
   provider: 'openai' | 'anthropic' | 'google' | 'groq';
   iconPath: string;
+  canWebSearch?: boolean;
   settings?: Record<string, any>;
 }
 
@@ -16,6 +17,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'gpt-4o-mini',
     provider: 'openai',
     iconPath: '/images/models/openai.svg',
+    canWebSearch: false,
   },
   {
     id: 'gpt-4o',
@@ -23,6 +25,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'gpt-4o',
     provider: 'openai',
     iconPath: '/images/models/openai.svg',
+    canWebSearch: false,
   },
   {
     id: 'gpt-4.5-preview',
@@ -30,6 +33,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'gpt-4.5-preview',
     provider: 'openai',
     iconPath: '/images/models/openai.svg',
+    canWebSearch: false,
   },
   {
     id: 'o1',
@@ -37,6 +41,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'o1',
     provider: 'openai',
     iconPath: '/images/models/openai.svg',
+    canWebSearch: false,
   },
   {
     id: 'o3-mini',
@@ -44,6 +49,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'o3-mini',
     provider: 'openai',
     iconPath: '/images/models/openai.svg',
+    canWebSearch: false,
   },
   {
     id: 'claude-3-5-sonnet',
@@ -51,6 +57,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'claude-3-5-sonnet-latest',
     provider: 'anthropic',
     iconPath: '/images/models/anthropic.svg',
+    canWebSearch: false,
   },
   {
     id: 'claude-3-7-sonnet',
@@ -58,6 +65,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'claude-3-7-sonnet-latest',
     provider: 'anthropic',
     iconPath: '/images/models/anthropic.svg',
+    canWebSearch: false,
   },
   {
     id: 'claude-3-7-sonnet-thinking',
@@ -65,6 +73,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'claude-3-7-sonnet-latest',
     provider: 'anthropic',
     iconPath: '/images/models/anthropic.svg',
+    canWebSearch: false,
     settings: {
       providerOptions: {
         anthropic: {
@@ -75,17 +84,19 @@ export const models: Array<Model> = [
   },
   {
     id: 'gemini-2.0-flash',
-    label: 'Gemini 2.0 Flash (Web)',
+    label: 'Gemini 2.0 Flash',
     apiIdentifier: 'gemini-2.0-flash',
     provider: 'google',
     iconPath: '/images/models/gemini.svg',
+    canWebSearch: true,
   },
   {
     id: 'gemini-2.5-pro-exp-03-25',
-    label: 'Gemini 2.5 Pro (Web)',
+    label: 'Gemini 2.5 Pro',
     apiIdentifier: 'gemini-2.5-pro-exp-03-25',
     provider: 'google',
     iconPath: '/images/models/gemini.svg',
+    canWebSearch: true,
   },
   {
     id: 'deepseek-r1-distill-llama-70b',
@@ -93,6 +104,7 @@ export const models: Array<Model> = [
     apiIdentifier: 'deepseek-r1-distill-llama-70b',
     provider: 'groq',
     iconPath: '/images/models/groq.svg',
+    canWebSearch: false,
   },
 ] as const;
 

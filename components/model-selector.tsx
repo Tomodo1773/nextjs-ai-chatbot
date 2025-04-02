@@ -1,5 +1,6 @@
 'use client';
 
+import { Globe } from 'lucide-react';
 import { startTransition, useMemo, useState } from 'react';
 
 import { saveModelId } from '@/app/(chat)/actions';
@@ -43,10 +44,15 @@ export function ModelSelector({
             <img
               src={selectedModel.iconPath}
               alt={`${selectedModel.provider} icon`}
-              className="w-4 h-4"
+              className="size-4"
             />
           )}
-          {selectedModel?.label}
+          <div className="flex items-center gap-2">
+            {selectedModel?.label}
+            {selectedModel?.canWebSearch && (
+              <Globe className="size-4 text-muted-foreground" />
+            )}
+          </div>
           <ChevronDownIcon />
         </Button>
       </DropdownMenuTrigger>
@@ -72,9 +78,16 @@ export function ModelSelector({
               <img
                 src={model.iconPath}
                 alt={`${model.provider} icon`}
-                className="w-4 h-4"
+                className="size-4"
               />
-              <div className="flex flex-col">{model.label}</div>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2">
+                  {model.label}
+                  {model.canWebSearch && (
+                    <Globe className="size-4 text-muted-foreground" />
+                  )}
+                </div>
+              </div>
             </div>
             <div className="text-primary dark:text-primary-foreground opacity-0 group-data-[active=true]/item:opacity-100">
               <CheckCircleFillIcon />
