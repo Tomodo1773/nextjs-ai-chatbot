@@ -28,6 +28,14 @@ export const models: Array<Model> = [
     canWebSearch: false,
   },
   {
+    id: 'gpt-4.1',
+    label: 'GPT 4.1',
+    apiIdentifier: 'gpt-4.1',
+    provider: 'openai',
+    iconPath: '/images/models/openai.svg',
+    canWebSearch: false,
+  },
+  {
     id: 'gpt-4.5-preview',
     label: 'GPT 4.5',
     apiIdentifier: 'gpt-4.5-preview',
